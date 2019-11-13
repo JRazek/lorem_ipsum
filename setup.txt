@@ -1,0 +1,2 @@
+maps_directory "./gamefiles/maps"
+default_map "map1"

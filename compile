@@ -1,0 +1,2 @@
+#!/bin/bash
+g++ ./main.cpp ./gamefiles/Classes/source_files/*.cpp -o program
