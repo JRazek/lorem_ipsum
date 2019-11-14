@@ -3,9 +3,9 @@
 #include <map>
 #pragma once
 class Config{
-	std::string maps_directory;
-	std::string default_map;
+	std::string* test;
 	std::map <std::string, std::string> settings;
+
 public:
 	Config(std::string);
 	~Config();

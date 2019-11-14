@@ -1,5 +1,8 @@
 #include "./../headers/Config.h"
 Config::Config(std::string setup_file){
+	settings["maps_directory"] = "0";
+	settings["default_map"] = "0";
+
 	std::fstream file(setup_file, std::ios::in);
 	std::string line;
 	if(!file.good()){
@@ -8,7 +11,8 @@ Config::Config(std::string setup_file){
 	}
 	while(getline(file, line)){
 		std::string* str = this->get_config_var(line);
-		settings[str[0]] = str [1];
+	//	std::cout<<settings.find("maps_directory")<<std::endl;
+		settings[str[0].c_str()] = str[1];
 	}
 }
 
