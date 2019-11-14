@@ -1,8 +1,5 @@
 #include "./../headers/Config.h"
 Config::Config(std::string setup_file){
-	settings["maps_directory"] = "0";
-	settings["default_map"] = "0";
-
 	std::fstream file(setup_file, std::ios::in);
 	std::string line;
 	if(!file.good()){
@@ -11,9 +8,10 @@ Config::Config(std::string setup_file){
 	}
 	while(getline(file, line)){
 		std::string* str = this->get_config_var(line);
-	//	std::cout<<settings.find("maps_directory")<<std::endl;
 		settings[str[0].c_str()] = str[1];
 	}
+	//sprawdz czy ustawienia oczekiwane sa w setup.txt
+	isOK = 1; //tymczasowo
 }
 
 Config::~Config(){
@@ -24,6 +22,26 @@ void Config::foreach_settings(){
 	for (const auto& op : settings) {
     	std::cout << op.first << " is set to " << op.second << std::endl;
 	}
+}
+
+	std::string Config::maps_directory(){
+		return settings["maps_directory"];
+	}
+	std::string Config::defualt_map(){
+		return settings["defualt_map"];
+	}
+
+bool Config::key_exists(std::map <std::string, std::string> map, std::string key){
+	for (const auto& op : map) {
+		if(op.first == key){
+			return 1;
+		}
+	}
+	return 0;
+}
+
+bool Config::good(){
+	return isOK;
 }
 
 std::string* Config::get_config_var(std::string str){
@@ -45,4 +63,26 @@ std::string* Config::get_config_var(std::string str){
 		}
 	}
 	return var;
+}
+int Config::strpos(std::string pattern, std::string str){
+	int i = 0;
+	int patt_count = 0;
+	while(i < str.size()){
+		int count = 0;
+		if(pattern[0] == str[i]){
+		int j = 0;
+			while(pattern[j] == str[i+j] && j < pattern.size()){
+				count ++;
+				j++;
+			}
+			if(count == pattern.size()){
+				patt_count++;
+			}
+			i += j;
+		}
+		else{
+			i++;
+		}
+	}
+	return patt_count;
 }
