@@ -1,3 +1,4 @@
+#pragma once
 #include "./../headers/Config.h"
 Config::Config(std::string setup_file){
 	std::fstream file(setup_file, std::ios::in);
@@ -7,7 +8,7 @@ Config::Config(std::string setup_file){
 		this->~Config();
 	}
 	while(getline(file, line)){
-		std::string* str = this->get_config_var(line);
+		std::string* str = Configurable::get_config_var(line);
 		settings[str[0].c_str()] = str[1];
 	}
 	//sprawdz czy ustawienia oczekiwane sa w setup.txt
@@ -15,7 +16,7 @@ Config::Config(std::string setup_file){
 }
 
 Config::~Config(){
-	std::cout<<"\nObject destructed.";
+
 }
 
 void Config::foreach_settings(){
@@ -23,13 +24,13 @@ void Config::foreach_settings(){
     	std::cout << op.first << " is set to " << op.second << std::endl;
 	}
 }
+std::string Config::maps_directory(){
+	return settings["maps_directory"];
+}
 
-	std::string Config::maps_directory(){
-		return settings["maps_directory"];
-	}
-	std::string Config::defualt_map(){
-		return settings["defualt_map"];
-	}
+std::string Config::defualt_map(){
+	return settings["defualt_map"];
+}
 
 bool Config::key_exists(std::map <std::string, std::string> map, std::string key){
 	for (const auto& op : map) {
@@ -44,26 +45,6 @@ bool Config::good(){
 	return isOK;
 }
 
-std::string* Config::get_config_var(std::string str){
-	bool open = 0;
-	std::string *var = new std::string[2];
-	for(int i = 0; i < str.size(); i++){
-		if(str[i] == ' '){
-			i++;
-		}
-		if(str[i] == '"'){
-			open = !open;
-			i++;
-		}
-		if(!open){
-			var[0]+=str[i];
-		}
-		if(open){
-			var[1]+=str[i];
-		}
-	}
-	return var;
-}
 int Config::strpos(std::string pattern, std::string str){
 	int i = 0;
 	int patt_count = 0;

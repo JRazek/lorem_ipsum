@@ -1,11 +1,18 @@
+#pragma once
 #include <iostream>
-class Map{
+#include <fstream>
+#include "Configurable.h"
+class Map: public Configurable{
 private:
-	std::string directory;
-	int size_x;
-	int size_y;
+	const std::string map_name_pattern = "map";//name of the files that maps are written in
+	const std::string map_config_pattern = "map_config";//name of the files that contains config of the map
+	std::string directory;//directory where the map files are in
+	int size_x;//size in x
+	int size_y;//size in y
+	int** map;//contains all the map chars
+	bool isOK;//specifies if the map is correctly working and loaded
 public:
 	Map(std::string);
-	int sizex();
-	int sizey();
+	int sizex();//returns x size
+	int sizey();//returns y size
 };
