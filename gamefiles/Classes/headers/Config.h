@@ -3,7 +3,9 @@
 #include <map>
 #pragma once
 class Config{
-	const std::string possible_settings = "maps_directory default_map";
+	std::string possible_settings[3]{
+		"maps_directory", "default_map", "test"
+	};
 	bool isOK;
 	std::map <std::string, std::string> settings;
 public:
