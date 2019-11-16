@@ -12,7 +12,7 @@ Config::Config(std::string setup_file){
 		settings[str[0].c_str()] = str[1];
 	}
 	//sprawdz czy ustawienia oczekiwane sa w setup.txt
-	isOK = 1; //tymczasowo
+//	isOK = 1; //tymczasowo
 }
 
 Config::~Config(){
@@ -39,10 +39,6 @@ bool Config::key_exists(std::map <std::string, std::string> map, std::string key
 		}
 	}
 	return 0;
-}
-
-bool Config::good(){
-	return isOK;
 }
 
 int Config::strpos(std::string pattern, std::string str){

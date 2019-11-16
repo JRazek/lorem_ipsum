@@ -10,7 +10,6 @@ private:
 	int size_x;//size in x
 	int size_y;//size in y
 	int** map;//contains all the map chars
-	bool isOK;//specifies if the map is correctly working and loaded
 public:
 	Map(std::string);
 	int sizex();//returns x size

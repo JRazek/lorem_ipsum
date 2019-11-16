@@ -7,7 +7,7 @@ int main(){
 	//config.foreach_settings();
 	if(config.good()){
 		Map map(config.maps_directory());
-		config.foreach_settings();
+		//config.foreach_settings();
 	}
 	else
 		std::cout<<"Error";

@@ -13,11 +13,9 @@ Map::Map(std::string directory){
 		for(int i = 0;i < size_x;i++){
 			map[i] = new int[size_y];
 		}
-		map[1][1] = 5545;
-		std::cout<<map[1][1];
 	}
 	else{
-		isOK = false;
+		Configurable::isOK = false;
 	}
 }
 int Map::sizex(){
