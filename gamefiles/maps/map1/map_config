@@ -1,2 +1,2 @@
-sizex = "10"
-sizey = "10"
+sizex "10"
+sizey "10"

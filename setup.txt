@@ -1,2 +1,2 @@
-maps_directdory "./gamefiles/maps"
+maps_directory "./gamefiles/maps"
 default_map "map1"

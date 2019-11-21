@@ -1,4 +1,3 @@
-#pragma once
 #include "./../headers/Config.h"
 Config::Config(std::string setup_file){
 	std::fstream file(setup_file, std::ios::in);
@@ -7,12 +6,18 @@ Config::Config(std::string setup_file){
 		std::cout<<"\nError while reading file!";
 		this->~Config();
 	}
+	int conf_count = 0;
 	while(getline(file, line)){
 		std::string* str = Configurable::get_config_var(line);
+		if(arr_str_found(possible_config_settings, str[0].c_str(), config_config_count)){
+			conf_count++;
+		}
 		settings[str[0].c_str()] = str[1];
 	}
+	if(conf_count != config_config_count){
+		isOK = 0;
+	}
 	//sprawdz czy ustawienia oczekiwane sa w setup.txt
-//	isOK = 1; //tymczasowo
 }
 
 Config::~Config(){

@@ -3,7 +3,6 @@
 #include <fstream>
 #include <map>
 #include "Configurable.h"
-#pragma once
 class Config :public Configurable{
 	std::map <std::string, std::string> settings;
 	std::string *get_config_var(std::string);	//Disconnects one string to two with following syntax: input -> [sample_text "some_value"] output -> [0] = "sample_text"; [1] = "some_value"
