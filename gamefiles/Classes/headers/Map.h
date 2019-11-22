@@ -10,14 +10,16 @@ class Map: public Configurable{
 	std::string files_directory;//directory where the map files are in
 	std::string map_directory;
 	std::string config_directory;
-	int map_id;
+	std::string map_id;
 	int size_x;//size in x
 	int size_y;//size in y
-	int** map;//contains all the map chars
+	char** mapa;//contains all the map chars
 public:
-	Map(std::string, int);
-	~Map();
+	Map(std::string, std::string);//directory where the maps are stored (./gamefiles/maps), name/id of the map (map1)
+	~Map();//destructor
 	int sizex();//returns x size
 	int sizey();//returns y size
+	void show_map_debugging();
+	char **display();//returns a pointer to an array that cointains all the map chars.
 	void foreach_settings();//foreaching all settings
 };
